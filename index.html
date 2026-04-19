@@ -8,6 +8,28 @@
       name="description"
       content="A simple modern portfolio for a product manager spanning AI product development, data analysis, UX, and hardware."
     />
+    <meta name="theme-color" content="#f8f5ef" />
+    <script>
+      (() => {
+        const storageKey = "portfolio-theme";
+        let theme = "day";
+
+        try {
+          const savedTheme = window.localStorage.getItem(storageKey);
+          if (savedTheme === "day" || savedTheme === "night") {
+            theme = savedTheme;
+          } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            theme = "night";
+          }
+        } catch (error) {
+          if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            theme = "night";
+          }
+        }
+
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,11 +42,16 @@
     <div class="page-shell">
       <header class="site-header">
         <a class="brand" href="#top">Portfolio</a>
-        <nav class="site-nav" aria-label="Primary">
-          <a href="#work">Work</a>
-          <a href="#approach">Approach</a>
-          <a href="#case-studies">Case Studies</a>
-        </nav>
+        <div class="header-actions">
+          <nav class="site-nav" aria-label="Primary">
+            <a href="#work">Work</a>
+            <a href="#approach">Approach</a>
+            <a href="#case-studies">Case Studies</a>
+          </nav>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+            Night On
+          </button>
+        </div>
       </header>
 
       <main id="top">

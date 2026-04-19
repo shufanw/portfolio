@@ -1,19 +1,59 @@
 :root {
   --bg: #f5f1e8;
+  --bg-start: #f8f5ef;
+  --bg-end: #f1ebe0;
   --bg-soft: rgba(255, 252, 246, 0.82);
   --panel: rgba(255, 255, 255, 0.72);
   --panel-strong: rgba(255, 255, 255, 0.88);
+  --header-bg: rgba(248, 245, 239, 0.82);
   --line: rgba(24, 33, 28, 0.12);
   --text: #18211c;
   --muted: #58625a;
   --accent: #0f6a5c;
   --accent-soft: #d7ebe3;
   --accent-warm: #b86644;
+  --wash-a: rgba(15, 106, 92, 0.12);
+  --wash-b: rgba(184, 102, 68, 0.16);
+  --grid-line: rgba(255, 255, 255, 0.2);
+  --grid-mask: linear-gradient(180deg, rgba(0, 0, 0, 0.16), transparent 85%);
+  --button-primary-text: #f8f5ef;
+  --chip-bg: rgba(255, 255, 255, 0.56);
+  --link-bg: rgba(255, 255, 255, 0.55);
+  --gallery-bg: rgba(255, 255, 255, 0.52);
+  --image-bg: linear-gradient(135deg, rgba(15, 106, 92, 0.14), rgba(184, 102, 68, 0.14));
   --shadow: 0 24px 60px rgba(24, 33, 28, 0.08);
+  --shadow-strong: 0 28px 70px rgba(24, 33, 28, 0.14);
   --radius-lg: 28px;
   --radius-md: 20px;
   --radius-sm: 14px;
   --max-width: 1180px;
+}
+
+:root[data-theme="night"] {
+  --bg: #0d1618;
+  --bg-start: #132125;
+  --bg-end: #091012;
+  --bg-soft: rgba(14, 23, 26, 0.82);
+  --panel: rgba(15, 24, 28, 0.76);
+  --panel-strong: rgba(18, 29, 34, 0.92);
+  --header-bg: rgba(12, 20, 23, 0.82);
+  --line: rgba(199, 222, 216, 0.14);
+  --text: #edf4ef;
+  --muted: #afc2bb;
+  --accent: #73d5c3;
+  --accent-soft: rgba(115, 213, 195, 0.16);
+  --accent-warm: #f4ac84;
+  --wash-a: rgba(115, 213, 195, 0.16);
+  --wash-b: rgba(244, 172, 132, 0.14);
+  --grid-line: rgba(149, 187, 177, 0.12);
+  --grid-mask: linear-gradient(180deg, rgba(0, 0, 0, 0.42), transparent 88%);
+  --button-primary-text: #061113;
+  --chip-bg: rgba(18, 29, 34, 0.72);
+  --link-bg: rgba(19, 32, 36, 0.78);
+  --gallery-bg: rgba(17, 27, 31, 0.78);
+  --image-bg: linear-gradient(135deg, rgba(115, 213, 195, 0.18), rgba(244, 172, 132, 0.14));
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+  --shadow-strong: 0 28px 70px rgba(0, 0, 0, 0.42);
 }
 
 * {
@@ -22,6 +62,11 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html[data-theme="night"] {
+  color-scheme: dark;
 }
 
 body {
@@ -30,9 +75,10 @@ body {
   font-family: "Manrope", "Avenir Next", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(15, 106, 92, 0.12), transparent 32%),
-    radial-gradient(circle at top right, rgba(184, 102, 68, 0.16), transparent 28%),
-    linear-gradient(180deg, #f8f5ef 0%, var(--bg) 40%, #f1ebe0 100%);
+    radial-gradient(circle at top left, var(--wash-a), transparent 32%),
+    radial-gradient(circle at top right, var(--wash-b), transparent 28%),
+    linear-gradient(180deg, var(--bg-start) 0%, var(--bg) 40%, var(--bg-end) 100%);
+  transition: background 220ms ease, color 220ms ease;
 }
 
 body::before {
@@ -41,10 +87,10 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 96px 96px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.16), transparent 85%);
+  mask-image: var(--grid-mask);
   opacity: 0.45;
 }
 
@@ -76,7 +122,7 @@ img {
   padding: 16px 20px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(248, 245, 239, 0.82);
+  background: var(--header-bg);
   backdrop-filter: blur(16px);
   box-shadow: 0 8px 30px rgba(24, 33, 28, 0.06);
 }
@@ -88,11 +134,46 @@ img {
   letter-spacing: 0.02em;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
 .site-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 18px;
+}
+
+.theme-toggle {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel-strong);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  transform: translateY(-1px);
+}
+
+.theme-toggle[aria-pressed="true"] {
+  background: var(--text);
+  color: var(--button-primary-text);
 }
 
 .hero {
@@ -172,7 +253,7 @@ img {
 
 .button-primary {
   background: var(--text);
-  color: #f8f5ef;
+  color: var(--button-primary-text);
 }
 
 .button-secondary {
@@ -252,7 +333,7 @@ img {
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 11px 15px;
-  background: rgba(255, 255, 255, 0.56);
+  background: var(--chip-bg);
   color: var(--muted);
   cursor: pointer;
   transition: transform 160ms ease, background 160ms ease, color 160ms ease;
@@ -262,7 +343,7 @@ img {
 .filter-chip:hover,
 .filter-chip:focus-visible {
   background: var(--text);
-  color: #f8f5ef;
+  color: var(--button-primary-text);
   transform: translateY(-1px);
 }
 
@@ -282,7 +363,7 @@ img {
 .project-card:hover,
 .project-card:focus-within {
   transform: translateY(-4px);
-  box-shadow: 0 28px 70px rgba(24, 33, 28, 0.14);
+  box-shadow: var(--shadow-strong);
 }
 
 .project-card.is-hidden,
@@ -293,7 +374,7 @@ img {
 .project-image {
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(15, 106, 92, 0.14), rgba(184, 102, 68, 0.14));
+  background: var(--image-bg);
 }
 
 .project-image img {
@@ -339,7 +420,7 @@ img {
   padding: 0 14px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--link-bg);
   font-weight: 700;
 }
 
@@ -409,7 +490,7 @@ img {
   margin: 0;
   border-radius: 18px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.52);
+  background: var(--gallery-bg);
   border: 1px solid var(--line);
 }
 
@@ -470,6 +551,12 @@ img {
     align-items: start;
   }
 
+  .header-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .site-nav {
     gap: 14px;
     justify-content: start;
@@ -492,7 +579,8 @@ img {
 
   .button,
   .text-link,
-  .filter-chip {
+  .filter-chip,
+  .theme-toggle {
     width: 100%;
     justify-content: center;
   }
