@@ -115,7 +115,6 @@ const state = {
   activeFilter: "All"
 };
 
-const storageKey = "portfolio-theme";
 const categories = ["All", ...new Set(projects.map((project) => project.category))];
 
 const encodeAsset = (path) => encodeURI(path);
@@ -144,47 +143,6 @@ const projectGrid = document.querySelector("#project-grid");
 const approachGrid = document.querySelector("#approach-grid");
 const caseStudyList = document.querySelector("#case-study-list");
 const footerNote = document.querySelector("#footer-note");
-const themeToggle = document.querySelector("#theme-toggle");
-const themeColor = document.querySelector('meta[name="theme-color"]');
-
-function activeTheme() {
-  return document.documentElement.dataset.theme === "night" ? "night" : "day";
-}
-
-function syncThemeToggle(theme) {
-  const nightModeEnabled = theme === "night";
-
-  themeToggle.setAttribute("aria-pressed", String(nightModeEnabled));
-  themeToggle.textContent = nightModeEnabled ? "Night Off" : "Night On";
-
-  if (themeColor) {
-    themeColor.setAttribute("content", nightModeEnabled ? "#132125" : "#f8f5ef");
-  }
-}
-
-function saveThemePreference(theme) {
-  try {
-    window.localStorage.setItem(storageKey, theme);
-  } catch (error) {
-    // Ignore storage failures so the toggle still works for this session.
-  }
-}
-
-function applyTheme(theme) {
-  document.documentElement.dataset.theme = theme;
-  syncThemeToggle(theme);
-}
-
-function initializeTheme() {
-  const currentTheme = activeTheme();
-  applyTheme(currentTheme);
-
-  themeToggle.addEventListener("click", () => {
-    const nextTheme = activeTheme() === "night" ? "day" : "night";
-    applyTheme(nextTheme);
-    saveThemePreference(nextTheme);
-  });
-}
 
 function renderProfile() {
   heroName.textContent = profile.name;
@@ -340,7 +298,6 @@ function observeReveals() {
   });
 }
 
-initializeTheme();
 renderProfile();
 renderFilters();
 renderProjects();
