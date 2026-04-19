@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Manager Portfolio</title>
+    <meta
+      name="description"
+      content="A simple modern portfolio for a product manager spanning AI product development, data analysis, UX, and hardware."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#top">Portfolio</a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="#work">Work</a>
+          <a href="#approach">Approach</a>
+          <a href="#case-studies">Case Studies</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero reveal">
+          <div class="hero-copy">
+            <p class="eyebrow" id="hero-role">Product Manager</p>
+            <h1 id="hero-name">Portfolio</h1>
+            <p class="hero-summary" id="hero-summary"></p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#work">View Projects</a>
+              <a class="button button-secondary" href="#case-studies">Open Case Studies</a>
+            </div>
+          </div>
+
+          <aside class="hero-panel">
+            <p class="panel-label">Overview</p>
+            <div class="stats" id="stats"></div>
+            <p class="panel-note">
+              Each project includes direct links to the original one-page brief and the visuals already in the folder structure.
+            </p>
+          </aside>
+        </section>
+
+        <section class="work-intro reveal" id="work">
+          <div>
+            <p class="section-label">Selected Work</p>
+            <h2>Projects across AI, analytics, interfaces, and physical products.</h2>
+          </div>
+          <div class="filter-row" id="filters" aria-label="Project filters"></div>
+        </section>
+
+        <section class="project-grid" id="project-grid" aria-label="Project cards"></section>
+
+        <section class="approach reveal" id="approach">
+          <div class="section-heading">
+            <p class="section-label">Approach</p>
+            <h2>Grounded in research, shaped by systems thinking, and communicated through clear execution.</h2>
+          </div>
+          <div class="approach-grid" id="approach-grid"></div>
+        </section>
+
+        <section class="case-studies reveal" id="case-studies">
+          <div class="section-heading">
+            <p class="section-label">Case Studies</p>
+            <h2>Original briefs and supporting visuals from past work.</h2>
+          </div>
+          <div class="case-study-list" id="case-study-list"></div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p id="footer-note"></p>
+      </footer>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
