@@ -33,6 +33,7 @@ const projects = [
       "An AI product development case study centered on shaping the experience, defining the problem space, and packaging the concept into a concise product story.",
     focus: ["Product vision", "AI workflows", "Prototype framing"],
     pdf: "AI Product Development/Cue/Content.pdf",
+    coverImage: "AI Product Development/Cue/Cover img.png",
     images: ["AI Product Development/Cue/img 1.png"]
   },
   {
@@ -43,6 +44,7 @@ const projects = [
       "A data analysis project focused on examining how expert influence appears in decision patterns and how insights can be communicated clearly.",
     focus: ["Research synthesis", "Data storytelling", "Insight communication"],
     pdf: "Data Analysis/Influence of Experts/Content.pdf",
+    coverImage: "Data Analysis/Influence of Experts/cover img.png",
     images: [
       "Data Analysis/Influence of Experts/img 1.png",
       "Data Analysis/Influence of Experts/img 2.png"
@@ -56,6 +58,7 @@ const projects = [
       "Applied analytics work using natural language processing to turn text data into structured sentiment signals and actionable observations.",
     focus: ["Text analysis", "Signal extraction", "Insight framing"],
     pdf: "Data Analysis/NLTK Sentiment Analysis/Content.pdf",
+    coverImage: "Data Analysis/NLTK Sentiment Analysis/cover img.png",
     images: [
       "Data Analysis/NLTK Sentiment Analysis/img 1.png",
       "Data Analysis/NLTK Sentiment Analysis/img 2.png",
@@ -70,6 +73,7 @@ const projects = [
       "An HCI and IoT concept exploring how digital interactions extend into physical touchpoints, with attention to the full user flow and system behavior.",
     focus: ["Connected experiences", "Interaction design", "System thinking"],
     pdf: "HCI & IoT/Punch Line/Content.pdf",
+    coverImage: "HCI & IoT/Punch Line/cover img.png",
     images: [
       "HCI & IoT/Punch Line/Screenshot 2026-04-19 at 4.46.20 PM.png",
       "HCI & IoT/Punch Line/Screenshot 2026-04-19 at 4.47.15 PM.png"
@@ -83,6 +87,7 @@ const projects = [
       "A UI and UX design exploration focused on flow clarity, interface presentation, and creating a product experience that feels coherent end to end.",
     focus: ["Interface flows", "Experience design", "Visual polish"],
     pdf: "UIUX Design/iCoffee/Content.pdf",
+    coverImage: "UIUX Design/iCoffee/Cover img.png",
     images: ["UIUX Design/iCoffee/Screenshot 2026-04-19 at 4.49.04 PM.png"]
   },
   {
@@ -93,6 +98,7 @@ const projects = [
       "A user research and hardware study focused on physical interaction, experience mapping, and translating observed needs into product directions.",
     focus: ["User research", "Physical product thinking", "Experience mapping"],
     pdf: "User Research & Hardware/Glide/Content.pdf",
+    coverImage: "User Research & Hardware/Glide/Cover img.png",
     images: ["User Research & Hardware/Glide/img 1.png"]
   },
   {
@@ -103,6 +109,7 @@ const projects = [
       "A hardware-oriented portfolio piece spanning concept framing, hands-on exploration, and multiple visual artifacts from the development process.",
     focus: ["Concept development", "Artifact exploration", "Hardware experimentation"],
     pdf: "User Research & Hardware/Soda/Content.pdf",
+    coverImage: "User Research & Hardware/Soda/Cover img.png",
     images: [
       "User Research & Hardware/Soda/img 1.png",
       "User Research & Hardware/Soda/img 2.png",
@@ -212,7 +219,7 @@ function renderProjects() {
       return `
         <article class="project-card reveal ${visible ? "" : "is-hidden"}">
           <div class="project-image">
-            <img src="${encodeAsset(project.images[0])}" alt="${project.title} preview" loading="lazy" />
+            <img src="${encodeAsset(project.coverImage || project.images[0])}" alt="${project.title} preview" loading="lazy" />
           </div>
           <div class="project-copy">
             <div class="project-header">
