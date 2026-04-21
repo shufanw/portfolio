@@ -273,6 +273,36 @@ img {
   gap: 20px;
 }
 
+.skills {
+  padding-top: 72px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.skills-card {
+  padding: 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+.skills-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  line-height: 1.5;
+  font-size: 0.92rem;
+}
+
 .project-card {
   overflow: hidden;
   border-radius: var(--radius-lg);
@@ -440,10 +470,17 @@ img {
 
 @media (max-width: 980px) {
   .hero,
-  .case-study,
+  .case-study {
+    grid-template-columns: 1fr;
+  }
+
   .project-grid,
   .approach-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .work-intro,
@@ -482,8 +519,15 @@ img {
   .hero-panel,
   .project-copy,
   .approach-card,
+  .skills-card,
   .case-study {
     padding: 20px;
+  }
+
+  .project-grid,
+  .approach-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
   }
 
   .gallery {

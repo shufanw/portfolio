@@ -24,6 +24,67 @@ const profile = {
   ]
 };
 
+const skills = [
+  {
+    category: "Strategy",
+    items: [
+      "Product Requirements Document (PRD)",
+      "Product Roadmaps",
+      "Stakeholder Interviews",
+      "Competitor Research",
+      "User Stories",
+      "Stakeholder Management",
+      "Go-to-Market Strategy",
+      "SaaS",
+      "B2B / B2C"
+    ]
+  },
+  {
+    category: "Business",
+    items: [
+      "Product Ownership",
+      "Startup Growth",
+      "Data Analytics",
+      "A/B Testing",
+      "Front-End Analysis",
+      "Enterprise Software",
+      "Process Development",
+      "Customer Journey",
+      "User Acquisition"
+    ]
+  },
+  {
+    category: "Technology",
+    items: [
+      "Salesforce CRM",
+      "Machine Learning (ML)",
+      "NLP",
+      "Atlassian Tools",
+      "Microsoft Office Suite",
+      "Google Docs / Analytics",
+      "SQL",
+      "Python",
+      "Tableau",
+      "Database Management"
+    ]
+  },
+  {
+    category: "Design",
+    items: [
+      "Design Thinking",
+      "User Experience (UX)",
+      "User Interface (UI)",
+      "Accessibility Compliance",
+      "Mobile-Responsive Design",
+      "iOS / Android Apps",
+      "Wireframes",
+      "Intercom",
+      "Decision Trees",
+      "Figma"
+    ]
+  }
+];
+
 const projects = [
   {
     slug: "cue",
@@ -148,6 +209,7 @@ const stats = document.querySelector("#stats");
 const filters = document.querySelector("#filters");
 const projectGrid = document.querySelector("#project-grid");
 const approachGrid = document.querySelector("#approach-grid");
+const skillsGrid = document.querySelector("#skills-grid");
 const caseStudyList = document.querySelector("#case-study-list");
 const footerNote = document.querySelector("#footer-note");
 
@@ -206,6 +268,21 @@ function renderFilters() {
       observeReveals();
     });
   });
+}
+
+function renderSkills() {
+  skillsGrid.innerHTML = skills
+    .map(
+      (group) => `
+        <article class="skills-card reveal">
+          <p class="section-label">${group.category}</p>
+          <ul class="skills-list">
+            ${group.items.map((item) => `<li>${item}</li>`).join("")}
+          </ul>
+        </article>
+      `
+    )
+    .join("");
 }
 
 function projectVisible(project) {
@@ -307,6 +384,7 @@ function observeReveals() {
 
 renderProfile();
 renderFilters();
+renderSkills();
 renderProjects();
 renderCaseStudies();
 observeReveals();
